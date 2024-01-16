@@ -16,8 +16,13 @@ public class WeaponManager : NetworkBehaviour
     private Transform weaponHolder;
     [HideInInspector]
     public int currentMagazineSize;
+    [SerializeField]
+    public GameObject weaponCamera;
+    public Camera mainCamera;
+    private float normalFOV;
 
     public bool isReloading = false;
+    public bool isScoped = false;
     void Start()
     {  
         EquipWeapon(primaryWeapon);
@@ -73,10 +78,41 @@ public class WeaponManager : NetworkBehaviour
         Debug.Log("Reloading Finished");
     }
 
+    public IEnumerator Scope()
+    {
+        Debug.Log("Scoping ...");
+        CmdOnScope();
+        yield return new WaitForSeconds(currentWeapon.scopeTime);
+        weaponCamera.SetActive(!isScoped);
+ 
+        ManageFOV();
+
+        GetCurrentGraphics().scope.SetActive(isScoped);  
+    }
+
+    public void ManageFOV()
+    {        
+        if(isScoped)
+        {
+            normalFOV = mainCamera.fieldOfView;
+            mainCamera.fieldOfView = currentWeapon.scopeFOV;
+        }
+        else
+        {
+            mainCamera.fieldOfView = normalFOV;
+        }
+    }
+
     [Command]
     void CmdOnReload()
     {
         RpcOnReload();
+    }
+
+    [Command]
+    void CmdOnScope()
+    {
+        RpcOnScope();
     }
 
     [ClientRpc]
@@ -89,5 +125,16 @@ public class WeaponManager : NetworkBehaviour
         }
         AudioSource audioSource = GetComponent<AudioSource>();
         audioSource.PlayOneShot(currentWeapon.reloadSound);
+    }
+
+    [ClientRpc]
+    void RpcOnScope()
+    {
+        Animator animator = currentGraphics.GetComponent<Animator>();
+        if(animator != null)
+        {   
+            isScoped = !isScoped;   
+            animator.SetBool("IsScoped", isScoped);
+        }
     }
 }

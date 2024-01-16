@@ -1041,11 +1041,14 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  primaryWeapon: {fileID: 11400000, guid: 9dca8472dc5d82641a71a4bf218e2569, type: 2}
+  primaryWeapon: {fileID: 11400000, guid: 7c1dfcea164987d48971e37b23894d77, type: 2}
   weaponLayerName: Weapon
   weaponHolder: {fileID: 546350089001706487}
   currentMagazineSize: 0
+  weaponCamera: {fileID: 8503343930053395339}
+  mainCamera: {fileID: 6518269171637615436}
   isReloading: 0
+  isScoped: 0
 --- !u!82 &4853662737909822527
 AudioSource:
   m_ObjectHideFlags: 0

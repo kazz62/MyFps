@@ -9,6 +9,8 @@ public class WeaponData : ScriptableObject
    public float fireRate = 0f;
    public int magazineSize = 10;
    public float reloadTime = 1.5f;
+   public float scopeTime = 0.15f;
+   public float scopeFOV = 15f;
 
    public GameObject graphics;
 

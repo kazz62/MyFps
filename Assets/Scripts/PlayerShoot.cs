@@ -31,6 +31,12 @@ public class PlayerShoot : NetworkBehaviour
             return;
         }
 
+        if(Input.GetButtonDown("Fire2") && weaponManager.GetCurrentGraphics().scope != null)
+        {
+            StartCoroutine(weaponManager.Scope());
+            return;
+        }
+
         if(Input.GetKeyDown(KeyCode.R) && weaponManager.currentMagazineSize < currentWeapon.magazineSize)
         {
             StartCoroutine(weaponManager.Reload());
