@@ -1554,6 +1554,7 @@ MonoBehaviour:
   ammoText: {fileID: 2288834736936280624}
   pauseMenu: {fileID: 4554226440113278867}
   scoreboard: {fileID: 2981743146432882366}
+  scopeOverlay: {fileID: 0}
 --- !u!114 &-7280434634972125543
 MonoBehaviour:
   m_ObjectHideFlags: 0

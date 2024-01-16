@@ -1045,7 +1045,10 @@ MonoBehaviour:
   weaponLayerName: Weapon
   weaponHolder: {fileID: 546350089001706487}
   currentMagazineSize: 0
+  weaponCamera: {fileID: 8503343930053395339}
+  mainCamera: {fileID: 6518269171637615436}
   isReloading: 0
+  isScoped: 0
 --- !u!82 &4853662737909822527
 AudioSource:
   m_ObjectHideFlags: 0
